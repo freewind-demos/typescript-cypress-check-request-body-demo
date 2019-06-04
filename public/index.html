@@ -2,13 +2,14 @@
 <head>
     <script src="./jquery-3.4.1.js"></script>
     <script>
-      function fetchData(header) {
+      function postData() {
         $.ajax({
-          method: 'GET',
+          method: 'POST',
           url: './data.json',
-          headers: {
-            'my-header': header
-          },
+          contentType: 'application/json',
+          data: JSON.stringify({
+            name: 'cypress'
+          }),
           success: (data) => {
             document.getElementById('message').innerText = JSON.stringify(data)
           }
@@ -18,8 +19,7 @@
 </head>
 <body>
 <div>
-    <button id="button1" onclick="fetchData('header1')">Click to Fetch Data 1</button>
-    <button id="button2" onclick="fetchData('header2')">Click to Fetch Data 2</button>
+    <button id="button" onclick="postData()">Click to Post Data</button>
 </div>
 <div id="message"></div>
 </body>
